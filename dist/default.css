@@ -1,0 +1,109 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("purple-blue.jpg");
+}
+
+label {
+    color: white;
+}
+
+.container {
+    background: rgba(3, 3, 3, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(3, 3, 3, 0.3);
+    
+    padding: 5px;
+}
+
+
+input {
+  background: rgba(119, 93, 93, 0.44);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.1px);
+  -webkit-backdrop-filter: blur(4.1px);
+  border: none;
+
+  height: auto + 2px;
+  width: auto + 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+}
+
+.message {
+  width: 80%;
+  height: 62px;
+  overflow-wrap: break-word;
+  resize: none;
+}
+
+.chat-window {
+  width: 96%;
+  height: 202px;
+  overflow-wrap: break-word;
+  resize: none;
+}
+
+.disable-select {
+  user-select: none; /* supported by Chrome and Opera */
+ -webkit-user-select: none; /* Safari */
+ -khtml-user-select: none; /* Konqueror HTML */
+ -moz-user-select: none; /* Firefox */
+ -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
+.send-btn {
+  float: right;
+  width: 15%;
+}
+
+.inner-table {
+  width: 100%;
+}
+
+textarea {
+  background: rgba(119, 93, 93, 0.44);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.1px);
+  -webkit-backdrop-filter: blur(4.1px);
+  border: none;
+
+  height: auto + 2px;
+  width: auto + 2px; 
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+}
+
+button {
+  background: rgba(119, 93, 93, 0.44);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.1px);
+  -webkit-backdrop-filter: blur(4.1px);
+  border: 1px solid rgba(119, 93, 93, 1);
+    
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+}
+
+
+button:active {     
+  background: rgba(71, 63, 63, 0.44);    
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script
+			  src="https://code.jquery.com/jquery-3.6.0.slim.js"
+			  integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
+			  crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="default.css">
+</head>
+
+<body class="disable-select">
+    <table>
+        <tr>
+            <td>
+                <div class="container">
+                    <table class="inner-table">
+                        <tr>
+                            <td><label for="name">NAME</label></td>
+                            <td><label for="ipaddr">IP-ADDRESS</label></td>
+                        </tr>
+                        <tr>
+                            <td><input id="name" name="name"></td>
+                            <td><input id="ipaddr" name="ipaddr"></td>
+                            <td><button id="connect-btn">CONNECT</button></td>
+                        </tr>
+                    </table>
+                </div>
+        </tr>
+        </td>
+        <tr>
+            <td>
+                <div class="container">
+                    <table class="inner-table">
+                        <tr>
+                            <td><textarea class="chat-window" readonly></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><textarea id="msg" class="message"></textarea><button id="send-btn" class="send-btn">SEND</button></td>
+                        </tr>
+                    </table>
+                </div>
+    </table>
+    <script type="module" src="./connector.js"></script>
+</body>
+</html>
