@@ -74,7 +74,7 @@ fn start() -> Menu {
           break;
         }
       }
-  
+  d
       match rx.try_recv() {
         Ok(msg) => {
           let mut buff = msg.clone().into_bytes();
