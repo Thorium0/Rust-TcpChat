@@ -3,8 +3,8 @@ use std::net::TcpListener;
 use std::sync::mpsc;
 use std::thread;
 
-const LOCAL: &str = "127.0.0.1:2478";
-const MSG_SIZE: usize = 32;
+const LOCAL: &str = "0.0.0.0:2478";
+const MSG_SIZE: usize = 512;
 
 fn sleep() {
     thread::sleep(::std::time::Duration::from_millis(100));
@@ -42,7 +42,7 @@ fn main() {
                         break;
                     }
                 }
-                sleep();c
+                sleep();
             });
         }
         if let Ok(msg) = rx.try_recv() {
