@@ -16,6 +16,8 @@ use lazy_static::lazy_static;
 use json;
 use serde_json;
 
+mod server;
+
 const MSG_SIZE: usize = 512;
 const PORT: &str = "2478";
 const CONNECTION_TRIES: u8 = 5;
@@ -31,18 +33,18 @@ lazy_static! {
 
 
 fn get_menu() -> Menu {
-  let new = CustomMenuItem::new("new".to_string(), "New");
+  let start = CustomMenuItem::new("server".to_string(), "Start server");
   let quit = CustomMenuItem::new("quit".to_string(), "Quit");
   let about = CustomMenuItem::new("about".to_string(), "About");
 
   let help = Submenu::new("Help", Menu::new().add_item(about));
-  let file = Submenu::new("File", Menu::new().add_item(quit).add_item(new));
+  let main = Submenu::new("Main", Menu::new().add_item(quit).add_item(start));
 
 
 
   Menu::new()
     .add_native_item(MenuItem::Copy)
-    .add_submenu(file)
+    .add_submenu(main)
     .add_submenu(help)
   
 }
@@ -137,7 +139,7 @@ fn display_info_msg(msg: &str, kind: &str) {
 }
 
 
-async fn send_msg(msg: String)  {
+fn send_msg(msg: String)  {
 
   let lock = CHANNEL.lock().unwrap();
   let tx = lock.as_ref().clone().unwrap();
@@ -242,7 +244,7 @@ fn main() {
         if *IS_RUNNING.lock().unwrap() {
           let msg = event.payload().unwrap().to_string();
           
-          task::spawn(send_msg(msg));
+          send_msg(msg);
         } else {
           display_info_msg("Not connected to server.", "Alert");
         }
@@ -258,6 +260,9 @@ fn main() {
       match event.menu_item_id() {
         "quit" => {
           std::process::exit(0);
+        }
+        "server" => {
+          server::start();
         }
         _ => {}
       }
