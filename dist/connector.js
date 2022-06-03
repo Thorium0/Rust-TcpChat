@@ -47,7 +47,7 @@ listen('add_to_chatbox', event => {
     var chatbox_elem = $("#chatbox");
     var payload = event.payload;
     var user = payload["user"];
-    var message = "["+user+"] "+payload["message"]+"\n\n";
+    var message = "("+user+"): "+payload["message"]+"\n\n";
     chatbox_elem.append(message);
     chatbox_elem.scrollTop(chatbox_elem[0].scrollHeight);
 });
@@ -57,7 +57,7 @@ listen('add_info_to_chatbox', event => {
     var chatbox_elem = $("#chatbox");
     var payload = event.payload;
     var kind = payload["kind"];
-    var message = "{"+kind+"} "+payload["message"]+"\n\n";
+    var message = kind+" "+payload["message"]+"\n\n";
     chatbox_elem.append(message);
     chatbox_elem.scrollTop(chatbox_elem[0].scrollHeight);
 });
