@@ -96,6 +96,7 @@ async fn connect(name: String, mut ipaddr: String) {
             Err(ref err) if err.kind() == ErrorKind::WouldBlock => (),
             Err(_) => {
                 display_info_msg("Connection to server broke", "Alert");
+                *IS_RUNNING.lock().unwrap() = false;
                 break;
             }
         }
@@ -108,14 +109,16 @@ async fn connect(name: String, mut ipaddr: String) {
                 println!("Message sent {:?}", msg);
             }
             Err(TryRecvError::Empty) => (),
-            Err(TryRecvError::Disconnected) => break,
+            Err(TryRecvError::Disconnected) =>  {
+                *IS_RUNNING.lock().unwrap() = false;
+                break;
+            },
         }
 
         thread::sleep(Duration::from_millis(100));
     });
 
     conn.join().unwrap();
-    *IS_RUNNING.lock().unwrap() = false;
 }
 
 fn display_info_msg(msg: &str, kind: &str) {
