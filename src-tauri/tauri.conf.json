@@ -1,6 +1,6 @@
 {
   "package": {
-    "productName": "client",
+    "productName": "TcpChat-client",
     "version": "0.1.0"
   },
   "build": {
@@ -52,7 +52,7 @@
     },
     "windows": [
       {
-        "title": "Rust client",
+        "title": "TcpChat client",
         "width": 800,
         "height": 600,
         "resizable": true,
