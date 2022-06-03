@@ -3,6 +3,18 @@ const emit = window.__TAURI__.event.emit
 const listen = window.__TAURI__.event.listen
 
 
+function sanitize(string) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#x27;',
+        "/": '&#x2F;',
+    };
+    const reg = /[&<>"'/]/ig;
+    return string.replace(reg, (match)=>(map[match]));
+  }
 
 $(document).ready(function() {
     var input = document.getElementById("msg");
@@ -48,7 +60,7 @@ listen('add_to_chatbox', event => {
     var payload = event.payload;
     var user = payload["user"];
     var message = "("+user+"): "+payload["message"]+"\n\n";
-    chatbox_elem.append(message);
+    chatbox_elem.append(sanitize(message));
     chatbox_elem.scrollTop(chatbox_elem[0].scrollHeight);
 });
 
@@ -58,7 +70,7 @@ listen('add_info_to_chatbox', event => {
     var payload = event.payload;
     var kind = payload["kind"];
     var message = kind+" "+payload["message"]+"\n\n";
-    chatbox_elem.append(message);
+    chatbox_elem.append(sanitize(message));
     chatbox_elem.scrollTop(chatbox_elem[0].scrollHeight);
 });
 
