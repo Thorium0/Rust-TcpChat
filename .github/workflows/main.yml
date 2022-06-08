@@ -19,11 +19,10 @@ jobs:
                   node-version: 14
             - name: get version
               run: echo "PACKAGE_VERSION=$(node -p "require('./src-tauri/tauri.conf.json').package.version")" >> $GITHUB_ENV
-            - name: Build Changelog
-              id: github_release
-              uses: mikepenz/release-changelog-builder-action@v3
+            - name: Changelog
+              uses: Bullrich/generate-release-changelog@master
               env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                REPO: ${{ github.repository }}
             - name: create release
               id: create_release
               uses: actions/create-release@v1.1.0
@@ -32,7 +31,8 @@ jobs:
               with:
                   tag_name: ${{ env.PACKAGE_VERSION }}
                   release_name: "Client v${{ env.PACKAGE_VERSION }}"
-                  body: ${{steps.github_release.outputs.changelog}}
+                  body: |
+                    ${{ steps.Changelog.outputs.changelog }}
                   draft: false
                   prerelease: false
     build-tauri:

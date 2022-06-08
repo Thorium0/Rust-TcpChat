@@ -215,7 +215,6 @@ fn add_to_chatbox(window: Window) {
 
 fn main() {
     let menu = get_menu();
-    let test: u8;
 
     tauri::Builder::default()
         .setup(|app| {
