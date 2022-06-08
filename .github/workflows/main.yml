@@ -50,6 +50,8 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - name: setup node
+              if: matrix.platform == 'windows-latest'
+              run: git config core.symlinks false
               uses: actions/setup-node@v1
               with:
                   node-version: 14
