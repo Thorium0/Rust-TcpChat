@@ -15,11 +15,12 @@ jobs:
 
         steps:
             - uses: actions/checkout@v2
+              with:
+                fetch-depth: 0
             - name: setup node
               uses: actions/setup-node@v1
               with:
-                  node-version: 14
-                  fetch-depth: 0
+                node-version: 14
             - name: get version
               run: echo "PACKAGE_VERSION=$(node -p "require('./src-tauri/tauri.conf.json').package.version")" >> $GITHUB_ENV
             - name: 'Get Previous tag'
