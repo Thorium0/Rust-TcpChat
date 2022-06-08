@@ -48,10 +48,10 @@ jobs:
 
         runs-on: ${{ matrix.platform }}
         steps:
-            - name: disable symlinks for windows
+            - name: increase path length for windows
               if: matrix.platform == 'windows-latest'
               run: |
-                  git config core.symlinks false
+                  git config --system core.longpaths true
             - uses: actions/checkout@v2
             - name: setup node
               uses: actions/setup-node@v1
