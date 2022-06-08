@@ -48,7 +48,7 @@ jobs:
 
         runs-on: ${{ matrix.platform }}
         steps:
-            - name: increase path length for windows
+            - name: increase path length (windows only)
               if: matrix.platform == 'windows-latest'
               run: |
                   git config --system core.longpaths true
