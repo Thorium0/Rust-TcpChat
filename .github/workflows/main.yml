@@ -5,6 +5,8 @@ on:
       - 'v*'
   workflow_dispatch:
   
+
+
 jobs:
     create-release:
         runs-on: ubuntu-latest
@@ -19,10 +21,11 @@ jobs:
                   node-version: 14
             - name: get version
               run: echo "PACKAGE_VERSION=$(node -p "require('./src-tauri/tauri.conf.json').package.version")" >> $GITHUB_ENV
-            - name: Changelog
-              uses: Bullrich/generate-release-changelog@master
-              env:
-                REPO: ${{ github.repository }}
+            - name: 'Get Previous tag'
+              id: previoustag
+              uses: "WyriHaximus/github-action-get-previous-tag@v1"
+              with:
+                fallback: 1.0.0
             - name: create release
               id: create_release
               uses: actions/create-release@v1.1.0
@@ -31,8 +34,7 @@ jobs:
               with:
                   tag_name: ${{ env.PACKAGE_VERSION }}
                   release_name: "Client v${{ env.PACKAGE_VERSION }}"
-                  body: |
-                    ${{ steps.Changelog.outputs.changelog }}
+                  body: "**Full Changelog**: https://github.com/Thorium0/Rust-TcpChat/compare/${{ steps.previoustag.outputs.tag }}...${{ env.PACKAGE_VERSION }}"
                   draft: false
                   prerelease: false
     build-tauri:
