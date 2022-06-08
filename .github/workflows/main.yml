@@ -23,7 +23,7 @@ jobs:
               run: echo "PACKAGE_VERSION=$(node -p "require('./src-tauri/tauri.conf.json').package.version")" >> $GITHUB_ENV
             - name: 'Get Previous tag'
               id: previoustag
-              uses: "WyriHaximus/github-action-get-previous-tag@v1"
+              uses: "WyriHaximus/github-action-get-previous-tag@v1.1.0"
               with:
                 fallback: 1.0.0
             - name: create release
